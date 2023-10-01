@@ -10,18 +10,21 @@ import (
 	"fyne.io/fyne/v2/widget"
 )
 
-func insbutttonf(HowManySent *int, a fyne.App, ideabox *fyne.App) {
+func insbutttonf(RemainingMessages *int, a fyne.App, ideabox *widget.Entry) {
+	//error page
 	PassedregulatednumbersSentErrorWindow := a.NewWindow("Error")
-	if *HowManySent <= 0 {
-
+	if *RemainingMessages <= 0 {
+		//the auth part to see if you havent passed your limit
 		PassedregulatednumbersSentErrorWindowError := widget.NewLabel("sorry but you passed you 3 messages a month limit")
 		PassedregulatednumbersSentErrorWindow.SetContent(PassedregulatednumbersSentErrorWindowError)
 		PassedregulatednumbersSentErrorWindow.Show()
 	} else {
 
-		fmt.Println("button Pressed", *HowManySent, "requests remain")
-		fmt.Println(*ideabox)
-		*HowManySent--
+		fmt.Println("button Pressed", *RemainingMessages, "requests remain")
+		fmt.Println(ideabox)
+		// reduce your sent
+		*RemainingMessages--
+
 	}
 }
 func main() {
@@ -29,7 +32,8 @@ func main() {
 	var HowManySent int = 3
 	a := app.New()
 	wi := a.NewWindow("Melkey's Idea")
-	wi.Resize(fyne.NewSize(1200, 400))
+	wi.Resize(fyne.NewSize(600, 400))
+
 	question := widget.NewLabel("Insert your Idea for Melkey")
 	logo := canvas.NewImageFromFile("Icon.png")
 	logo.FillMode = canvas.ImageFillStretch
