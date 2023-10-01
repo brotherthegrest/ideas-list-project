@@ -10,7 +10,7 @@ import (
 	"fyne.io/fyne/v2/widget"
 )
 
-func insbutttonf(HowManySent *int, a fyne.App, ideabox fyne.App) {
+func insbutttonf(HowManySent *int, a fyne.App, ideabox *fyne.App) {
 	PassedregulatednumbersSentErrorWindow := a.NewWindow("Error")
 	if *HowManySent <= 0 {
 
@@ -20,7 +20,7 @@ func insbutttonf(HowManySent *int, a fyne.App, ideabox fyne.App) {
 	} else {
 
 		fmt.Println("button Pressed", *HowManySent, "requests remain")
-		fmt.Println(ideabox)
+		fmt.Println(*ideabox)
 		*HowManySent--
 	}
 }
@@ -35,9 +35,17 @@ func main() {
 	logo.FillMode = canvas.ImageFillStretch
 	ideabox := widget.NewEntry()
 	ideabox.SetPlaceHolder("Your idea ")
-	insbutton := widget.NewButtonWithIcon("Enter", fyne.Resource(logo.Resource), func() { insbutttonf(&HowManySent, a) })
+	insbutton := widget.NewButtonWithIcon("Enter", fyne.Resource(logo.Resource), func() { insbutttonf(&HowManySent, a, ideabox) })
 	ideaboxs := container.NewGridWithColumns(2, ideabox, insbutton)
 	rectidea := container.NewGridWithRows(2, question, ideaboxs)
 	wi.SetContent(rectidea)
 	wi.ShowAndRun()
+	//TODO
+	/*
+		Document all the documentation
+		Find Where to store messages/ideas
+		how to store them
+		create gui to read the messages
+		combine all together
+	*/
 }
