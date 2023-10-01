@@ -46,7 +46,7 @@ func main() {
 	wi.ShowAndRun()
 	//TODO
 	/*
-		Document all the documentation
+		XxX Document all the documentation XxX
 		Find Where to store messages/ideas
 		how to store them
 		create gui to read the messages
