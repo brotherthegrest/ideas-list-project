@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
@@ -21,7 +22,8 @@ func insbutttonf(RemainingMessages *int, a fyne.App, ideabox *widget.Entry) {
 	} else {
 
 		fmt.Println("button Pressed", *RemainingMessages, "requests remain")
-		fmt.Println(ideabox)
+		log.Println(ideabox.Text)
+		ideabox.SetText("")
 		// reduce your sent
 		*RemainingMessages--
 
@@ -39,6 +41,7 @@ func main() {
 	logo.FillMode = canvas.ImageFillStretch
 	ideabox := widget.NewEntry()
 	ideabox.SetPlaceHolder("Your idea ")
+
 	insbutton := widget.NewButtonWithIcon("Enter", fyne.Resource(logo.Resource), func() { insbutttonf(&HowManySent, a, ideabox) })
 	ideaboxs := container.NewGridWithColumns(2, ideabox, insbutton)
 	rectidea := container.NewGridWithRows(2, question, ideaboxs)
